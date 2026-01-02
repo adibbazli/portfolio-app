@@ -5,16 +5,18 @@ interface HeroProps {
 }
 
 export default function Hero({ profile }: HeroProps) {
+    const base = import.meta.env.BASE_URL
+
     return (
         <section id="home" className="min-h-screen flex items-center pt-20 bg-gradient-to-br from-slate-50 to-blue-50">
             <div className="max-w-6xl mx-auto px-6 text-center">
                 <div className="fade-in mb-8">
                     <img
-                        src="/images/profile.jpg"
+                        src={`${base}images/profile.jpg`}
                         alt="Profile"
                         className="w-48 h-48 rounded-full object-cover border-4 border-blue-600 shadow-xl mx-auto hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/images/placeholder.svg'
+                            (e.target as HTMLImageElement).src = `${base}images/placeholder.svg`
                         }}
                     />
                 </div>
