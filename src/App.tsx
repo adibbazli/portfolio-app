@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { portfolioData } from './data'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -8,8 +9,9 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ProjectListing from './components/ProjectListing'
 
-function App() {
+function HomePage() {
     const [activeSection, setActiveSection] = useState('home')
 
     useEffect(() => {
@@ -45,4 +47,38 @@ function App() {
     )
 }
 
+function ProjectsPage() {
+    return (
+        <>
+            <Navbar activeSection="" />
+            <ProjectListing projects={portfolioData.projects} />
+            <Footer name={portfolioData.profile.name} />
+        </>
+    )
+}
+
+function App() {
+    const { pathname, hash } = useLocation()
+
+    // Scroll to top or hash when route changes
+    useEffect(() => {
+        if (hash) {
+            const element = document.querySelector(hash)
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' })
+            }
+        } else {
+            window.scrollTo(0, 0)
+        }
+    }, [pathname, hash])
+
+    return (
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+        </Routes>
+    )
+}
+
 export default App
+

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Project } from '../data'
 
 interface ProjectsProps {
@@ -35,6 +36,24 @@ export default function Projects({ projects }: ProjectsProps) {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* See More Button */}
+                <div className="text-center mt-12">
+                    <Link
+                        to="/projects"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 hover:-translate-y-1 transition-all shadow-lg group"
+                    >
+                        See More Projects
+                        <svg
+                            className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </Link>
                 </div>
             </div>
         </section>
